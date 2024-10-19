@@ -21,10 +21,9 @@ const TesTAllformat = () => {
     // Define the custom keyword using addKeyword
     ajv.addKeyword('isUppercase', {
         type: 'string',
-        validate: ( data) => /^[A-Z]+$/.test(data),
-        errors: false // Change to true if you want to generate errors
+        validate: (schema, data) => /^[A-Z]+$/.test(data),
+        errors: false
     });
-
     // Compile the schema
     const validateSchema = ajv.compile(Allformat);
 
