@@ -1,8 +1,8 @@
 const express = require("express");
-const { BAPROUTES } = require("./Routes");
+const { BAPROUTES ,TESTROUTES} = require("./Routes");
 const app = express();
 app.use(express.json());
-
+app.use("/test",TESTROUTES)
 app.use("/validate_BAP", BAPROUTES); 
 
 app.listen(3000, () => {
