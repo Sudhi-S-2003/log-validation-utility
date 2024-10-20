@@ -1,4 +1,4 @@
-const { fnbCategories } = require('../../utils/enum')
+const { fnbCategories, groceryCategories, FashionCategories, agriCategories } = require('../../utils/enum')
 
 const BPPSEARCHSCHEMA = {
   type: 'object',
@@ -8,7 +8,7 @@ const BPPSEARCHSCHEMA = {
       properties: {
         domain: {
           type: 'string',
-          const: 'ONDC:RET11',
+          enum: ["ONDC:RET10", "ONDC:RET11", "ONDC:RET12","ONDC:RET17"],
         },
         action: {
           type: 'string',
@@ -602,7 +602,7 @@ const BPPSEARCHSCHEMA = {
                         },
                         category_id: {
                           type: 'string',
-                          enum: fnbCategories,
+                          // enum: fnbCategories,
                           errorMessage: 'Invalid category ID found for item for on_search ',
                         },
                         category_ids: {
@@ -1134,5 +1134,155 @@ const BPPSEARCHSCHEMA = {
     },
   },
   required: ['context', 'message'],
+  "if": {
+    "properties": {
+      "context": {
+        "properties": {
+          "domain": { "const": "ONDC:RET10" }
+        }
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "message": {
+        "properties": {
+          "catalog": {
+            "properties": {
+              "bpp/providers": {
+                "items": {
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "category_id": {
+                            "enum": groceryCategories
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "else": {
+    "if": {
+      "properties": {
+        "context": {
+          "properties": {
+            "domain": { "const": "ONDC:RET11" }
+          }
+        }
+      }
+    },
+    "then": {
+      "properties": {
+        "message": {
+          "properties": {
+            "catalog": {
+              "properties": {
+                "bpp/providers": {
+                  "items": {
+                    "properties": {
+                      "items": {
+                        "items": {
+                          "properties": {
+                            "category_id": {
+                              "enum": fnbCategories
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "else": {
+      "if": {
+        "properties": {
+          "context": {
+            "properties": {
+              "domain": { "const": "ONDC:RET12" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "message": {
+            "properties": {
+              "catalog": {
+                "properties": {
+                  "bpp/providers": {
+                    "items": {
+                      "properties": {
+                        "items": {
+                          "items": {
+                            "properties": {
+                              "category_id": {
+                                "enum": FashionCategories
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "if": {
+          "properties": {
+            "context": {
+              "properties": {
+                "domain": { "const": "ONDC:RET17" }
+              }
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "message": {
+              "properties": {
+                "catalog": {
+                  "properties": {
+                    "bpp/providers": {
+                      "items": {
+                        "properties": {
+                          "items": {
+                            "items": {
+                              "properties": {
+                                "category_id": {
+                                  "enum": agriCategories
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 module.exports = BPPSEARCHSCHEMA;
