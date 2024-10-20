@@ -6,7 +6,7 @@ const SechamaValidator = (schema) => {
     // Create a single AJV instance
     const ajv = new AJV({
         allErrors: true,
-        strict: 'log',
+        strict: false,
     });
 
     // Add formats and custom formats

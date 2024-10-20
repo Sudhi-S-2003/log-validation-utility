@@ -7,7 +7,7 @@ const BPPINITSCHEMA = {
           domain: {
             type: 'string',
             minLength: 1,
-            const: 'ONDC:RET11',
+            enum: ["ONDC:RET10", "ONDC:RET11", "ONDC:RET12", "ONDC:RET17"],
           },
           action: {
             type: 'string',
