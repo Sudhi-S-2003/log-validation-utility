@@ -1,9 +1,10 @@
 const { SechamaValidator } = require("../../Config");
 const { BAPSEARCHSCHEMA } = require("../../Schema/BAP");
 
-const validateBAPSearch = SechamaValidator(BAPSEARCHSCHEMA);
 
 const BAPsearch = (req, res) => {
+    const validateBAPSearch = SechamaValidator(BAPSEARCHSCHEMA);
+
     const { valid, errors } = validateBAPSearch(req.body);
 
     if (!valid) {

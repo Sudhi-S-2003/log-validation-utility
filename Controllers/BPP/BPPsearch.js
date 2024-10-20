@@ -1,9 +1,10 @@
 const { SechamaValidator } = require("../../Config");
 const { BPPSEARCHSCHEMA } = require("../../Schema/BPP");
 
-const validateBPPSearch = SechamaValidator(BPPSEARCHSCHEMA);
 
 const BPPsearch = (req, res) => {
+    const validateBPPSearch = SechamaValidator(BPPSEARCHSCHEMA);
+
     const { valid, errors } = validateBPPSearch(req.body);
 
     if (!valid) {
