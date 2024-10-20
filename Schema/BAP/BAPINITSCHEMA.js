@@ -1,4 +1,4 @@
-const BAPINITSCHEMA ={
+const BAPINITSCHEMA = {
   type: 'object',
   properties: {
     context: {
@@ -7,7 +7,7 @@ const BAPINITSCHEMA ={
         domain: {
           type: 'string',
           minLength: 1,
-          const: 'ONDC:RET11',
+          enum: ["ONDC:RET10", "ONDC:RET11", "ONDC:RET12", "ONDC:RET17"],
         },
         action: {
           type: 'string',
@@ -308,4 +308,4 @@ const BAPINITSCHEMA ={
   required: ['context', 'message'],
 }
 
-module.exports=BAPINITSCHEMA
+module.exports = BAPINITSCHEMA

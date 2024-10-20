@@ -1,4 +1,4 @@
- const BAPCONFIRMSCHEMA = {
+const BAPCONFIRMSCHEMA = {
   type: 'object',
   properties: {
     context: {
@@ -7,7 +7,7 @@
         domain: {
           type: 'string',
           minLength: 1,
-          const: 'ONDC:RET11',
+          enum: ["ONDC:RET10", "ONDC:RET11", "ONDC:RET12", "ONDC:RET17"],
         },
         action: {
           type: 'string',
@@ -641,4 +641,4 @@
   },
   required: ['context', 'message'],
 }
-module.exports=BAPCONFIRMSCHEMA;
+module.exports = BAPCONFIRMSCHEMA;
